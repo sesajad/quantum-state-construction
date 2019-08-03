@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{physics}
+\def\ind{\hspace{\parindent}}
+\begin{document}
+
+\section{Similar Works}
+\subsection{Deep Reinforcement Learning for Quantum Gate Control}
+\subsubsection{Summary}
+The paper states that approximation of unitary evolution in a quantum linear control (due to Pontryagin's principle) will be equivalent to choice of a sequence of unitary matrices from a limited set.
+
+To find the proper sequence, an RL problem can be defined:
+\begin{itemize}
+  \item time is discretized.
+  \item current state is accumulative evolution from the beginning. (continuous state space)
+  \item action is the current evolution which is a function of control parameter. (limited discrete actions)
+  \item transitions are totally certain (but will be modeled uncertainly).
+  \item reward (at the last turn) is related to fidelity.
+\end{itemize}
+
+\subsubsection{Notes}
+\ind p.2, \emph{``$d=16$''}: in a 4-d space, a hypercube has $2^4$ corners. it can be proved in a linear system corners are solution not planes (which has degrees of freedom).
+
+p.4, \emph{``$\text{argmax}_a$''}: typo. it must be $\max_a$
+
+p.5, \emph{``state transfer problem''}: lack of reasoning why RL can escape the trap, or reasoning on meaningfulness of experiments numbers that shows performance outreach (e.q. escaping the trap) 
+
+
+\subsection{Other Works}
+GRAPE, Genetics Algorithm
+
+\section{Problem}
+Suppose you have a number of N qubits, which are set to the state $\ket{10000}$ (I assume for definiteness that $N=5$).  How you can use machine learning to transform this state to a demanded state given by
+
+\[ \ket{\psi} = a_1\ket{10000} + a_2\ket{01000} +
+  a_3\ket{00100} + a_4\ket{00010} + a_5\ket{00001} \]
+
+Here we say that the evolution is restricted to the one-particle sector (since there is only one single 1 in a background of zeros). 
+
+You can then try to generalize this problem to arbitrary N and to the case where the number of 1's in each state is k (to the k-particle sector). 
+\subsection{Methods}
+\begin{itemize}
+  \item Solovey-Kitaev Algorithm (needs modification)
+  \item A* Search (proper hueristics)
+  \item Text-like Generative Model (needs investigation)
+\end{itemize}
+\end{document}

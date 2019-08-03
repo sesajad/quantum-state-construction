@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{physics}
+\begin{document}
+\[ \max_{\vec{J}} F(e^{iH(\vec{J})t} \ket{0}, \ket{\psi}) \]
+
+\[ \hat{\ket{\psi}} = e^{iH(\vec{J})t} \ket{0} \]
+
+
+\[ H(\vec{J}) = ? \]
+\[ \ket{0} = ? \]
+\[ \ket{\psi} = ? \]
+
+
+\[ F = \braket{\psi}{\tilde\psi} \braket{\tilde\psi}{\psi}\]
+\[ F = \mel{\psi}{e^{iHt}}{\phi} 
+\mel{\phi}{e^{-iH^\dagger t}}{\psi}
+\]
+\[ \pdv{F}{\lambda_i} = \mel{\psi}{\pdv{e^{iHt}}{\lambda_i}}{\phi} 
+\mel{\phi}{e^{-iH^\dagger t}}{\psi} + \mel{\psi}{e^{iHt}}{\phi} 
+\mel{\phi}{\pdv{e^{-iH^\dagger t}}{\lambda_i}}{\psi} \]
+
+now we must study derivative of matrix exponential.
+
+\subsection{commutating decompositon}
+
+we know
+\[ H = \sum_i \lambda_i M_i \]
+
+if we can find an $L$ such as
+\[ \lambda' = L\lambda, M' = LM \]
+\[ H = \sum_i \lambda'_i M'_i, [H, M'_i] = 0 \]
+
+then we will have
+\[ \pdv{e^{iHt}}{\lambda'_i} = iM'_it e^{iHt} \]
+\[ \rightarrow \pdv{F}{\lambda'_i} = \mel{\psi}{iM'_ite^{iHt}}{\phi} 
+\mel{\phi}{e^{-iH t}}{\psi} + \mel{\psi}{e^{iHt}}{\phi} 
+\mel{\phi}{-iM'_it e^{-iH t}}{\psi} \]
+
+by replacing $e^{iHt}\ket{\phi}$ with $\hat{\ket{\psi}}$
+
+\[ \rightarrow \pdv{F}{\lambda'_i} = \mel{\psi}{iM'_it}{\hat{\psi}}  \braket{\hat{\psi}}{\psi} - \braket{\psi}{\hat{\psi}}\mel{\hat{\psi}}{iM'_it}{\psi}  = 0 \]
+
+\[ \mel{\psi}{iM'_it}{\hat{\psi}}  \braket{\hat{\psi}}{\psi} = \braket{\psi}{\hat{\psi}}\mel{\hat{\psi}}{iM'_it}{\psi} \]
+
+\subsection{how to decompose}
+
+\[ H = \sum_i \lambda_i M_i \]
+
+if we can find an $L$ such as
+\[ \lambda_i' = L\lambda_i, M' = LM \]
+\[ H = \sum_i \lambda'_i M'_i, [H, M'_i] = 0 \]
+
+let 
+\[ M'_n = \sum_j L_{nj} M_j \]
+then
+\[ [H, M'_n] = \sum_i \lambda_i M_i \sum_j L_{nj} M_j - \sum_j L_{nj} M_j \sum_i \lambda_i M_i = 0 \]
+
+\[ [H, M'_n] = \sum_{i, j} \lambda_i L_{nj} M_i M_j - \sum_{i, j} \lambda_i L_{nj} M_j M_i = 0 \]
+
+\[ [H, M'_n] = \sum_{i, j} \lambda_i L_{nj}(M_i M_j - M_j M_i) = 0 \]
+\end{document}
