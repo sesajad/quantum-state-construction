@@ -23,8 +23,16 @@ Deep Learning frameworks are all just optimizers. we can use Tensorflow as an op
 
 We parameterize Hamiltonian with $J_i$s and $B_i$s and define the whole process as a computation graph. Then using optimizers such as gradient descent, we can find the best (not globally best) value for $J_i$s and $B_i$s which maximizes the fidelity. this approach is the same as what Innocenti. et. al. did for gate construction. it must be mentioned that we can design and solve any hamiltonian using this method.
 
-application of this method for famous gates
- TODO
+for this Hamiltonian
+\[ H = \sum_{i=1}^{\dim \mathcal{H} - 1} J_i (\dyad{i}{i + 1} + \dyad{i + 1}{i})  + \sum_{i=1}^{\dim \mathcal{H}} B_i \dyad{i}{i} \]
+
+in a one-sector space. we constructed random vectors by envolving $\ket{1}$.
+
+for different dimensions, the learning process (fidelity over cycles) was the following plots.
+
+TODO
+\begin{figure}{H}
+\end{figure}
 
 \subsection{Continuous Analytical Optimization}
 in a continuous framework, let $\vec{v} \in \mathbb{R}^m$ degrees of freedom for the whole evolution (Hamiltonian and time).
