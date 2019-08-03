@@ -1,3 +1,3 @@
 # quatum state construction
 
-see .tex file.
+see `report/report_2.pdf`
