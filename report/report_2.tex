@@ -1,37 +1,56 @@
 \documentclass{article}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
 \usepackage[arrowdel]{physics}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \def\ind{\hspace{\parindent}}
+\title{Report}
+\author{Amirreza Negari, Amirhossein Estiri, Sajad Kahani}
+\date{Augest 2019}
 \begin{document}
+
+\maketitle
 
 \section{Optimization Problem}
 let $S$ be set of feasible Hamiltonians, $\ket{\phi_0}$ the ground state and $\ket{\psi}$ the target state.
 
-formally, problem can be formulated by these equations
+formally, problem can be formulated by this equation
 \begin{equation} 
 \label{eq:opt}
 H^*, t^* = \argmax_{H \in S, t \in \mathbb{R}} \mathcal{F}(e^{iHt} \ket{\phi_0}, \ket{\psi})
 \end{equation}
 
-where $\mathcal{F}$ is fidelity.
+where $\mathcal{F}(., .)$ is fidelity.
 
 \subsection{Numerical Optimization}
-Deep Learning frameworks are all just optimizers. we can use Tensorflow as an optimizer to solve \ref{eq:opt}.
+We can use a deep learning framework as an optimizer to solve eq. \ref{eq:opt}
 
-We parameterize Hamiltonian with $J_i$s and $B_i$s and define the whole process as a computation graph. Then using optimizers such as gradient descent, we can find the best (not globally best) value for $J_i$s and $B_i$s which maximizes the fidelity. this approach is the same as what Innocenti. et. al. did for gate construction. it must be mentioned that we can design and solve any hamiltonian using this method.
+We can specify the problem, for the Hamiltonian below
 
-for this Hamiltonian
-\[ H = \sum_{i=1}^{\dim \mathcal{H} - 1} J_i (\dyad{i}{i + 1} + \dyad{i + 1}{i})  + \sum_{i=1}^{\dim \mathcal{H}} B_i \dyad{i}{i} \]
+\begin{equation} 
+\label{eq:hnearlydiag}
+H = \sum_{i=1}^{\dim \mathcal{H} - 1} J_i (\dyad{i}{i + 1} + \dyad{i + 1}{i})  + \sum_{i=1}^{\dim \mathcal{H}} B_i \dyad{i}{i} 
+\end{equation}
 
-in a one-sector space. we constructed random vectors by envolving $\ket{1}$.
+by defining $J_i$s and $B_i$s as optimization variables and then, making the computation graph of optimizing value in eq. \ref{eq:opt}, we can use gradient descent (or other optimizing methods) to solve the problem and find a value for variables although it may not be globally optimal.
 
-for different dimensions, the learning process (fidelity over cycles) was the following plots.
+This approach is the same as what Innocenti. et. al. did for gate construction. note that this method can be used for any Hamiltonian, not only eq. \ref{eq:hnearlydiag}.
 
-TODO
-\begin{figure}{H}
+here are results of applying this method on a one-sector space with aforementioned Hamiltonain, where $\ket{\phi_0} = \ket{1}$ and $\ket{\psi}$ are just random vectors.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{fidelity_4}
+\includegraphics[width=0.4\textwidth]{fidelity_8} \\
+\includegraphics[width=0.4\textwidth]{fidelity_16}
+\includegraphics[width=0.4\textwidth]{fidelity_32}
+\caption{fidelity vs. number of cycles for different random target vectors. 
+\\ a) $\dim \mathcal{H} = 4$, b) $\dim \mathcal{H} = 8$, c) $\dim \mathcal{H} = 16$, d) $\dim \mathcal{H} = 32$
+\\ Note. all of plots have the same x axis.}
 \end{figure}
 
 \subsection{Continuous Analytical Optimization}
@@ -59,7 +78,7 @@ $H = U^\dagger D U$
 \[ \pdv{H^k}{H_{mn}} = \sum_{1 \le i, j, \alpha,\beta \le \dim{\mathcal{H}}} U_{m\alpha}^\dagger U_{j\beta}^\dagger U_{\alpha i} U_{\beta n} \frac{D_{\alpha\alpha}^k - D_{\beta\beta}^k}{D_{\alpha\alpha} - D_{\beta\beta}} \dyad{i}{j} \] 
 \end{lemma}
 
-without loosing generalization, we can assume $\ket{\phi_0} = \ket{1}$
+without loosing generality, we can assume $\ket{\phi_0} = \ket{1}$
 
 by using two aformentioned lemma, we can show
 
