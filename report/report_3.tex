@@ -64,13 +64,8 @@ then by mapping to hilbert space
 \[ d := \min_{\va{x} \in P} ~\max_{\va{y} \in P - \{\va{x}\}} \va{x}\cdot\va{y} \]
 \[ \forall \ket{\phi} \in \mathcal{H} ~~ \exists \ket{t} \in S ~~ \mathcal{F}(\ket{\phi}, \ket{t}) \ge d \]
 
-\begin{lemma}
-assume three arbitrary states $\ket{a},\ket{b},\ket{c}$
-
-\[ \mathcal{F}(\ket{a},\ket{c}) \ge \mathcal{F}(\ket{a},\ket{b})\mathcal{F}(\ket{b},\ket{c})\]
-\end{lemma}
-
-holy shit, the lemma is wrong!
+We know from Fubini-Study metric that for three arbitrary states $\ket{a}$, $\ket{b}$ and $\ket{c}$
+\[ \arccos\sqrt{\mathcal{F}(\ket{a},\ket{c})} \ge \arccos\sqrt{\mathcal{F}(\ket{a},\ket{b})} + \arccos\sqrt{\mathcal{F}(\ket{b},\ket{c})}  \]
 
 now defining these
 \[ E_{\mathcal{H}} := \{\est[\ket{\phi}] ~|~ \ket{\phi} \in \mathcal{H} \} \]
@@ -83,9 +78,9 @@ and for all $\ket{\phi}$
 
 we know $E_S \subseteq E_{\mathcal{H}}$
 
-\begin{align*} \mathcal{F}(\ket{\phi}, \est[\ket{\phi}]) &\ge \max_{\ket{s} \in S} \mathcal{F}(\ket{\phi}, \est[\ket{s}]) \\ &\ge \max_{\ket{s} \in S} \mathcal{F} (\ket{\phi}, \ket{s})\mathcal{F}(\ket{s}, \est[\ket{s}]) 
-\\ &\ge \max_{\ket{s} \in S} \mathcal{F} (\ket{\phi}, \ket{s}) f_S  
-\\ &\ge d ~ f_S
+\begin{align*} \mathcal{F}(\ket{\phi}, \est[\ket{\phi}]) &\ge \max_{\ket{s} \in S} \mathcal{F}(\ket{\phi}, \est[\ket{s}]) \\ &\ge \max_{\ket{s} \in S} \cos^2\Big( \arccos\sqrt{\mathcal{F} (\ket{\phi}, \ket{s})} + \arccos\sqrt{\mathcal{F}(\ket{s}, \est[\ket{s}])} \Big) 
+\\ &\ge \max_{\ket{s} \in S} \cos^2\Big(\arccos\sqrt{\mathcal{F} (\ket{\phi}, \ket{s})} + \arccos{\sqrt{f_S}}\Big)  
+\\ &\ge \cos^2(\arccos\sqrt{d} + \arccos\sqrt{f_S}) = (\sqrt{d}\sqrt{f_S} - \sqrt{1-d}\sqrt{1-f_S})^2
 \end{align*}
 
 \section{Numerical Optimization}
@@ -97,7 +92,7 @@ Eq. \ref{eq:opt} as a parameteric optimization problem, can be solved approximat
 
 This approach is the same as what Innocenti. et. al. did for gate construction.
 
-the result of solving eq. \ref{eq:opt} for a target state such as $\ket{\phi}$, will give us a Hamiltonian, therefore, we can define $\est[\ket{\phi}] = e^{iH^*t}$ and consequently MGF
+the result of solving eq. \ref{eq:opt} for a target state such as $\ket{\phi}$, will give us a Hamiltonian, therefore, we can define $\est[\ket{\phi}] = e^{iH^*t}$ and consequently MGF.
 
 \section*{Appendix}
 proof of Lemma 1:
