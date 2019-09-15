@@ -51,17 +51,17 @@ we define a mapping $f: \mathbb{R}^{2N} \rightarrow \mathcal{H}$ with $\dim \mat
 
 \newtheorem{lemma}{Lemma}
 \begin{lemma}
-for two arbitrary vectors $\va{v}$ and $\va{v'}$ in $\mathbb{R}$
+for two arbitrary vectors $\va{v}$ and $\va{v'}$ in $\mathbb{R}^{2N}$
 \[ \mathcal{F}(f(\va{v}), f(\va{v'})) \ge \va{v}\cdot\va{v'} \]
 \end{lemma}
 
 now we choose a set of $k$ equidistributed points on a 2N-d unit hypersphere called $S$.
 
-for an arbitrary point $\va{x}$ on sphere, exists $\va{t} \in P$ that $\forall \va{p} \in P - \{\va{t}\} ~~ \va{t}\cdot\va{x} > \va{t}\cdot \va{p}$
+for an arbitrary point $\va{x}$ on sphere, exists $\va{t} \in S$ that $\forall \va{p} \in S - \{\va{t}\} ~~ \va{t}\cdot\va{x} > \va{t}\cdot \va{p}$
 
 then by mapping to hilbert space
-\[ S := \{ f(\va{p}) ~|~ \va{p} \in P \} \]
-\[ d := \min_{\va{x} \in P} ~\max_{\va{y} \in P - \{\va{x}\}} \va{x}\cdot\va{y} \]
+\[ S := \{ f(\va{p}) ~|~ \va{p} \in S \} \]
+\[ d := \min_{\va{x} \in S} ~\max_{\va{y} \in S - \{\va{x}\}} \va{x}\cdot\va{y} \]
 \[ \forall \ket{\phi} \in \mathcal{H} ~~ \exists \ket{t} \in S ~~ \mathcal{F}(\ket{\phi}, \ket{t}) \ge d \]
 
 We know from Fubini-Study metric that for three arbitrary states $\ket{a}$, $\ket{b}$ and $\ket{c}$
