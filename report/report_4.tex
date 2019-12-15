@@ -4,7 +4,7 @@
 \usepackage{float}
 \usepackage{caption}
 
-%\usepackage{amsmath}
+\usepackage{comment}
 \usepackage[arrowdel]{physics}
 \usepackage{amsfonts}
 \usepackage{amsthm}
@@ -67,9 +67,30 @@ the only guess that remains neither accepted or rejected is this theorem.
 and $\va{P}(1) = \va*{\lambda}^*$ and $f(\va{P}(u))$ is monotonically increasing. not proved yet!
 \end{theorem}
 
-\section{Numerical Results}
+\section{Numerical Methods}
+A wide range of optimization algorithms applied or studied in order to help solving this problem. Behavior of Steepest-Descent (first order) optimizers analyzed and the result was that a simple Gradient-Descent will be effective in case of hyperparameter tuning.
 
-By assuming theorem \ref{theor:monotonic} and knowing range of fidelity, we can apply a much faster optimzation algorithm, based on Gradient-Descent and Newton methods.
+Also BFGS as an applicable higher-order optimizer and NEWUOA, a derivative-free method was studied but have not been applied yet.
 
+following results are from tuned version of Gradient-Descent.
+\begin{table}[H]
+\[ \begin{array}{c|c|c|c|c||c}
+\dim \mathcal{H} & |S| & d & \bar{f} & f_{\min} & \text{MGF} \\ \hline 
+2 & 20069 & 0.995 & 0.999997 & 0.99990 & 0.993 \\
+3 & 101650 & 0.980 & 0.9998 & 0.9990 & 0.970 \\
 
+4 & 162820 & 0.955 & 0.990 & 0.950 & 0.819 \\
+\end{array} \]
+\caption{one-sector subspace}
+\end{table}
+
+Improvement in result is obvious in comparison to our previous results. In addition to that, in state transfer we have reached slight improvement in comparison to baseline results that reported by [Bose 2003].
+
+% TODO biblography
+
+\section{Literature}
+\begin{enumerate}
+\item Kalinin, K. P., \& Berloff, N. G. (2018). Global optimization of spin Hamiltonians with gain-dissipative systems. Scientific reports, 8(1), 17791.
+\item Quantum Technology and Optimization Problems: First International Workshop, QTOP 2019, Munich, Germany, March 18, 2019, Proceedings
+\end{enumerate}
 \end{document}
